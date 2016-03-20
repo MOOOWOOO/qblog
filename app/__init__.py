@@ -1,11 +1,13 @@
 # coding: utf-8
 from config import config
 from flask import Flask
+from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
 
 __author__ = 'Jux.Liu'
 
 db = SQLAlchemy()
+login_manager=LoginManager()
 
 
 def create_app(config_name):
