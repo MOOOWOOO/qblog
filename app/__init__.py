@@ -1,13 +1,20 @@
 # coding: utf-8
+from config import config
 from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
 
 __author__ = 'Jux.Liu'
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object('config')
+db = SQLAlchemy()
 
-    from views import bp
-    app.register_blueprint(bp)
+
+def create_app(config_name):
+    app = Flask(__name__)
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app=app)
+    db.init_app(app=app)
+
+    from .main import main
+    app.register_blueprint(main)
 
     return app
