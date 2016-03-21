@@ -11,6 +11,7 @@ class Config():
     SECRET_KEY = environ.get('SECRET_KEY') or '42'
     FLASKY_ADMIN = environ.get('FLASKY_ADMIN')
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
     WTF_CSRF_ENABLED = True
     WTF_CSRF_METHODS = ['POST', 'PUT', 'DELETE', 'PATCH']
 
