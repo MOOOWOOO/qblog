@@ -28,17 +28,17 @@ basedir = abspath(dirname(__file__))
 class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
-    # SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL') or 'sqlite:///' + join(basedir, 'data.sqlite')
+    SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URL') or 'sqlite:////home/jux/Documents/qblog/data.sqlite'
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    # SQLALCHEMY_DATABASE_URI = environ.get('DEV_DATABASE_URL') or join(basedir, 'data-dev.sqlite')
+    SQLALCHEMY_DATABASE_URI = environ.get('DEV_DATABASE_URL') or 'sqlite:////home/jux/Documents/qblog/data-dev.sqlite'
 
 
 class TestingConfig(Config):
     TESTING = True
-    # SQLALCHEMY_DATABASE_URI = environ.get('TEST_DATABASE_URL') or join(basedir, 'data-test.sqlite')
+    SQLALCHEMY_DATABASE_URI = environ.get('TEST_DATABASE_URL') or 'sqlite:////home/jux/Documents/qblog/data-test.sqlite'
 
 
 config = {
