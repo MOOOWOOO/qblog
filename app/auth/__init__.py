@@ -3,6 +3,7 @@ from flask import Blueprint
 
 __author__ = 'Jux.Liu'
 
-user = Blueprint('user', __name__, url_prefix='/user')
+auth = Blueprint('auth', __name__)
 
 from . import views
+from . import models

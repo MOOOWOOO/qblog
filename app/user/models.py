@@ -10,10 +10,11 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(20), unique=True, index=True, nullable=False)
     email = db.Column(db.String(64), unique=True, index=True, nullable=False)
-    password = db.Column('password', db.String(120), nullable=False)
+    _password = db.Column('password', db.String(120), nullable=False)
+    role_id = db.Column(db.Integer, default=2)
 
     def __repr__(self):
-        return '<User #{0}: {1}, email: {2}>'.format(self.id, self.username, self.email)
+        return '<User #{0}: {1}, email: {2}, role #{3}>'.format(self.id, self.username, self.email, self.role_id)
 
     @property
     def password(self):
@@ -21,10 +22,10 @@ class User(db.Model):
 
     @password.setter
     def password(self, password):
-        self.password = generate_password_hash(password=password)
+        self._password = generate_password_hash(password=password)
 
     def verify_password(self, password):
-        if self.password is None or password is None:
+        if self._password is None or password is None:
             return False
         return check_password_hash(self.password, password)
 
