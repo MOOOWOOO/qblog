@@ -1,12 +1,14 @@
 # coding: utf-8
 from os import environ
-from os.path import abspath, dirname, join
+from os.path import abspath, dirname
+from . import blueprint
+from .errors import configure_errorhandlers
 
 __author__ = 'Jux.Liu'
 
 
 class Config():
-    SECRET_KEY = environ.get('SECRET_KEY') or 'the answer of life, universe and everything'
+    SECRET_KEY = environ.get('SECRET_KEY') or '42'
     FLASKY_ADMIN = environ.get('FLASKY_ADMIN')
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     WTF_CSRF_ENABLED = True
@@ -14,12 +16,8 @@ class Config():
 
     @staticmethod
     def init_app(app):
-        # configure_errorhandlers(app)
-        # blueprint.regist(app)
-        # signals.regist(app)
-        # whooshalchemy.regist(app)
-        # create_admin(app)
-        pass
+        configure_errorhandlers(app)
+        blueprint.regist(app)
 
 
 basedir = abspath(dirname(__file__))
