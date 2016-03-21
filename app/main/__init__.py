@@ -6,5 +6,4 @@ __author__ = 'Jux.Liu'
 main = Blueprint('main', __name__)
 
 from . import views
-from . import errors
-from . import config
+from . import decorator
