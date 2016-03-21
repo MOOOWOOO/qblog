@@ -1,6 +1,7 @@
 # coding: utf-8
 import json
 
+from app.main.models import LoginForm
 from app.user.models import User
 from flask import render_template, request, redirect, url_for, send_from_directory, session
 from flask.ext.login import current_user, logout_user
@@ -31,6 +32,7 @@ def favicon():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
+    login_form = LoginForm()
     if request.method == 'POST':
         username = request.get_json()['username']
         password = request.get_json()['password']
@@ -40,7 +42,7 @@ def login():
             return redirect(request.args.get('next') or url_for('main.index'))
         else:
             return json.dumps({'code': 2, 'msg': 'Username/Password Error'})
-    return render_template("login.html")
+    return render_template("login.html", form=login_form)
 
 
 @main.route('/logout/<int:user_id>')

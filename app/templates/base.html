@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - qblog</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}
+{% endblock %}
+
+{% block scripts %}
+<!--<script type="application/javascript" src="../static/js/lib/jquery.js"></script>-->
+<script type="application/javascript" src="{{ url_for('static', filename='js/lib/jquery.js') }}"></script>
+{% endblock %}
+</body>
+
+</html>

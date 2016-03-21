@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LOGIN</title>
-</head>
-<body>
-<label>Username:
-    <input type="text" id="username" />
-</label>
-<label>Password:
-    <input type="password" id="password" />
-</label>
-<label>
-    <input type="button" id="login" value="LOGIN"/>
-</label>
-<p style="color: red" id="message">123</p>
-<script type="application/javascript" src="../static/js/lib/jquery.js"></script>
-<script type="application/javascript" src="../static/js/app/login.js"></script>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} LOGIN {% endblock %}
+
+{% block head %}
+{{ super() }}
+<style></style>
+{% endblock %}
+
+{% block body %}
+<form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }}: {{ form.username(id="username") }}
+    {{ form.password.label }}: {{ form.password(id="password") }}
+    {{ form.submit }}
+</form>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<!--<script type="application/javascript" src="{{url_for('static', filename='js/app/login.js')}}"></script>-->
+{% endblock %}
