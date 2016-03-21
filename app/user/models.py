@@ -27,7 +27,7 @@ class User(db.Model):
     def verify_password(self, password):
         if self._password is None or password is None:
             return False
-        return check_password_hash(self.password, password)
+        return check_password_hash(self._password, password)
 
     def generate(self):
         self.save()
