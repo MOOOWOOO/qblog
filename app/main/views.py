@@ -4,7 +4,7 @@ import json
 from app.main.models import LoginForm
 from app.user.models import User
 from flask import render_template, request, redirect, url_for, send_from_directory, session
-from flask.ext.login import current_user, logout_user
+from flask.ext.login import current_user, logout_user, login_user
 from . import main
 
 __author__ = 'Jux.Liu'
@@ -33,20 +33,20 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     login_form = LoginForm()
-    if request.method == 'POST':
-        username = request.get_json()['username']
-        password = request.get_json()['password']
+    if login_form.validate_on_submit():
+        username = request.form.get('username')
+        password = request.form.get('password')
         u = User.query.filter_by(username=username).first()
         if u.verify_password(password=password):
-            session[u.id] = u
+            login_user(u)
             return redirect(request.args.get('next') or url_for('main.index'))
         else:
             return json.dumps({'code': 2, 'msg': 'Username/Password Error'})
     return render_template("login.html", form=login_form)
 
 
-@main.route('/logout/<int:user_id>')
-def logout(user_id):
-    logout_user()
-    session[user_id] = None
-    return redirect(url_for('main.login'))
+@main.route('/logout/')
+def logout():
+    if current_user.is_authenticated:
+        logout_user()
+        return redirect(url_for('main.login'))

@@ -1,11 +1,12 @@
 # coding: utf-8
 from app import db, login_manager
+from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 __author__ = 'Jux.Liu'
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(20), unique=True, index=True, nullable=False)
