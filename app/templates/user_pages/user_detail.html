@@ -1,11 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User {{ user.id }}</title>
-</head>
-<body>
-username: {{ user.username }}
-email: {{ user.email }}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} {{ user.username }}'s Home Page {% endblock %}
+
+{% block head %}
+{{ super() }}
+<style></style>
+{% endblock %}
+
+{% block body %}
+<div>
+    <table>
+        <tr>
+            <td><label>UID: </label></td>
+            <td><p>{{ user.id }}</p></td>
+        </tr>
+        <tr>
+            <td><label>username: </label></td>
+            <td><p>{{ user.username }}</p></td>
+        </tr>
+        <tr>
+            <td><label>Email: </label></td>
+            <td><p>{{ user.email }}</p></td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<!--<script type="application/javascript" src="{{url_for('static', filename='js/app/login.js')}}"></script>-->
+{% endblock %}
