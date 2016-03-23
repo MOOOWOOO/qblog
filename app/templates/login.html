@@ -1,22 +1,22 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% block title %} LOGIN {% endblock %}
-
-{% block head %}
-{{ super() }}
-<style></style>
-{% endblock %}
 
 {% block body %}
 <form method="post">
     {{ form.hidden_tag() }}
-    {{ form.username.label }}: {{ form.username(id="username") }}
-    {{ form.password.label }}: {{ form.password(id="password") }}
+    <table>
+        <tr>
+            <td>{{ form.username.label }}:</td>
+            <td>{{ form.username(id="username") }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>{{ form.password.label }}:</td>
+            <td>{{ form.password(id="password") }}</td>
+        </tr>
+    </table>
     {{ form.submit }}
 </form>
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
-<!--<script type="application/javascript" src="{{url_for('static', filename='js/app/login.js')}}"></script>-->
 {% endblock %}

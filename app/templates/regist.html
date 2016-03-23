@@ -1,24 +1,28 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% block title %} REGIST {% endblock %}
-
-{% block head %}
-{{ super() }}
-<style></style>
-{% endblock %}
 
 {% block body %}
 <form method="post">
     {{ form.hidden_tag() }}
-    {{ form.email.label }}: {{ form.email(id="email") }}
-    {{ form.username.label }}: {{ form.username(id="username") }}
-    {{ form.password.label }}: {{ form.password(id="password") }}
-    {{ form.password2.label }}: {{ form.password2(id="password2") }}
+    <table>
+        <tr>
+            <td>{{ form.email.label }}:</td>
+            <td>{{ form.email(id="email") }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.username.label }}:</td>
+            <td>{{ form.username(id="username") }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label }}:</td>
+            <td>{{ form.password(id="password") }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password2.label }}:</td>
+            <td>{{ form.password2(id="password2") }}</td>
+        </tr>
+    </table>
     {{ form.submit }}
 </form>
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
-<!--<script type="application/javascript" src="{{url_for('static', filename='js/app/login.js')}}"></script>-->
 {% endblock %}
