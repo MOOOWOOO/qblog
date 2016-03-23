@@ -1,9 +1,10 @@
 # coding: utf-8
 import json
 
-from app.main.models import LoginForm
+from app import db
+from app.main.models import LoginForm, RegistForm
 from app.user.models import User
-from flask import render_template, request, redirect, url_for, send_from_directory, session
+from flask import render_template, request, redirect, url_for, send_from_directory
 from flask.ext.login import current_user, logout_user, login_user
 from . import main
 
@@ -43,6 +44,19 @@ def login():
         else:
             return json.dumps({'code': 2, 'msg': 'Username/Password Error'})
     return render_template("login.html", form=login_form)
+
+
+@main.route('/regist/', methods=['GET', 'POST'])
+def regist():
+    regist_form = RegistForm()
+    if regist_form.validate_on_submit():
+        user = User(email=regist_form.email.data,
+                    username=regist_form.username.data,
+                    password=regist_form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('main.login'))
+    return render_template('regist.html', form=regist_form)
 
 
 @main.route('/logout/')
