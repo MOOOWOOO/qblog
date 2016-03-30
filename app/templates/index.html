@@ -3,10 +3,10 @@
 {% block title %} HOME PAGE {% endblock %}
 
 {% block banner %}
-{{ super() }}
+    {{ super() }}
 
-{% if current_user.is_authenticated %}
-<a href="{{ url_for('user.user_main', user_id=current_user.id) }}">My HomePage</a>
-{% endif %}
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('user.user_about', user_id=current_user.id) }}">My HomePage</a>
+    {% endif %}
 
 {% endblock %}

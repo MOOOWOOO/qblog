@@ -7,4 +7,4 @@ __author__ = 'Jux.Liu'
 
 def regist(app):
     app.register_blueprint(main_bp)
-    app.register_blueprint(user_bp, url_prefix='/user')
+    app.register_blueprint(user_bp, url_prefix='/<int:user_id>')
