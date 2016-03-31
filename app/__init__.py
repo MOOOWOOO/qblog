@@ -20,3 +20,7 @@ def create_app(config_name):
     login_manager.init_app(app=app)
 
     return app
+
+app = create_app('default')
+
+from app.util import filters

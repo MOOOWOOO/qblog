@@ -1,13 +1,11 @@
 # coding: utf-8
-from app import create_app, db
+from app import db, app
 from app.auth.models import Role
 from app.user.models import User
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Server, Shell, Manager
 
 __author__ = 'Jux.Liu'
-
-app = create_app('default')
 
 manager = Manager(app)
 migrate = Migrate(app, db)
